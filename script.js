@@ -143,6 +143,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+async function submitBooking() {
+
+  const name = document.getElementById("name")?.value;
+  const email = document.getElementById("email")?.value;
+  const room = document.getElementById("room")?.value;
+  const checkin = document.getElementById("checkin")?.value;
+  const checkout = document.getElementById("checkout")?.value;
+
+  const bookingData = {
+    name,
+    email,
+    room,
+    checkin,
+    checkout
+  };
+
+  try{
+    const response = await fetch("http://localhost:5000/api/bookings",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(bookingData)
+    });
+
+    const data = await response.json();
+
+    alert("Booking successful!");
+
+  }catch(err){
+    console.log(err);
+    alert("Booking failed");
+  }
+}
+
 
 
 
