@@ -143,20 +143,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-async function submitBooking() {
+async function submitBooking(){
 
-  const name = document.getElementById("name")?.value;
-  const email = document.getElementById("email")?.value;
-  const room = document.getElementById("room")?.value;
-  const checkin = document.getElementById("checkin")?.value;
-  const checkout = document.getElementById("checkout")?.value;
+  const location = document.querySelector(".location").value;
+  const rooms = document.getElementById("rooms").value;
+  const adults = document.getElementById("adults").value;
+  const kids = document.getElementById("kids").value;
 
   const bookingData = {
-    name,
-    email,
-    room,
-    checkin,
-    checkout
+    location,
+    rooms,
+    adults,
+    kids
   };
 
   try{
@@ -170,6 +168,7 @@ async function submitBooking() {
 
     const data = await response.json();
 
+    console.log(data);
     alert("Booking successful!");
 
   }catch(err){
